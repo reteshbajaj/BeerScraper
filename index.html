@@ -10,19 +10,7 @@
     <script src="geolocation.js"></script>
   </head>
 
-  <body onload="verify_geolocation_capability()">
-
-    <h1>Latitude and Longitude</h1>
-
-    <form name="form1" id="form1">
-      Geolocation Capability: <input type="text" name="capability" value="Unknown">
-      <p />
-      Latitude:  <input type="text" name="latitude">
-      <p />
-      Longitude: <input type="text" name="longitude">
-      <p />
-      <input type="button" name="submit" value="Get Latitude and Longitude" onclick="retrieve_location()">
-    </form>
+  <body onload="retrieve_location()">
 
   </body>
 </html>
