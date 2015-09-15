@@ -13,14 +13,22 @@ beerStalker.controller('BeerStalkController', ['$scope', '$resource', function($
         { get: { method: 'JSONP'} });
 
       searchResource.get().$promise.then(function(response){
-        var filteredResults = [];
-        for (index = 0; index < response.results.length; index++) {
-          var result = response.results[index].description;
-          if(result.indexOf('free beer') >= 0) {
-            filteredResults.push(response.results[index]);
+        console.log(response.results)
+        console.log(response.results.length)
+        if (response.results.length > 0) {
+          console.log('results.length is greater than 0')
+          var filteredResults = [];
+          for (index = 0; index < response.results.length; index++) {
+            var result = response.results[index].description;
+            if(result.indexOf('free beer') >= 0) {
+              filteredResults.push(response.results[index]);
+              console.log(filteredResults)
+            }
           }
-        }
-        $scope.searchResult = (filteredResults)//filtered by 'free beer';
+          $scope.searchResult = (filteredResults)//filtered by 'free beer';
+        } else {
+          alert("Invalid search")
+        };
       });
     };
 }]);
