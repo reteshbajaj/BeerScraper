@@ -3,6 +3,7 @@ function buildPositionArray(position) {
    latLong.push(position.coords.latitude);
    latLong.push(position.coords.longitude);
    console.log(latLong);
+   doMoreWorkWithPosition(position)
 }
 
 function handle_error(error) {
@@ -17,3 +18,6 @@ function retrieve_location() {
       console.alert("This browser does not support geolocation services.");
    }
 }
+retrieve_location.then(function(location){
+   apiCall(location)
+})
