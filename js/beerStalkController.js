@@ -1,4 +1,4 @@
-beerStalker.factory('ApiCall', function() {
+beerStalker.factory('MeetupApi', function($resource, $scope) {
   return {
     search: function() {
       var searchResource = $resource('https://api.meetup.com/2/open_events.json?and_text=true&:text&:country&:city&:key&:text_format', {
@@ -16,7 +16,7 @@ beerStalker.factory('ApiCall', function() {
           var result = response.results[index].description;
           
           try {
-            result.indexOf('free beer')
+            result.indexOf('free beer');
           } 
           catch(err) {
             $('#error_div').fadeIn(500).delay(8000).fadeOut(1000);
@@ -31,19 +31,18 @@ beerStalker.factory('ApiCall', function() {
         if(filteredResults.length === 0) {
           $('.results').hide();
           $('#no_results_div').fadeIn(500).delay(8000).fadeOut(1000);
-          return
+          return;
         } else {
           $('.results').show();
-          $scope.searchResult = filteredResults
+          $scope.searchResult = filteredResults;
         }
       });
     } 
   };
 });
 
-beerStalker.controller('BeerStalkController', ['$scope', '$resource', function($scope, $resource) {
+beerStalker.controller('BeerStalkController', ['$scope', '$resource', 'MeetupApi', function($scope, $resource, MeetupApi) {
 
-  $scope.search = function() {
+  $scope.search = MeetupApi.search;
 
-  };
 }]);
